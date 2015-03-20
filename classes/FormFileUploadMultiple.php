@@ -103,14 +103,20 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 			return;
 		}
 
-		foreach ($_FILES[$this->name] as $key1 => $value1) {
+		if (isset($_FILES[$this->name]['name'][0])) {
+			foreach ($_FILES[$this->name] as $key1 => $value1) {
 
-			if ($key1 == 'size') {
-				$this->uploadSize = array_sum($value1);
+				if ($key1 == 'size') {
+					$this->uploadSize = array_sum($value1);
+				}
+
+				foreach ($value1 as $key2 => $value2) {
+					$this->arrFiles[$key2][$key1] = $value2;
+				}
 			}
-
-			foreach ($value1 as $key2 => $value2) {
-				$this->arrFiles[$key2][$key1] = $value2;
+		} else {
+			foreach ($_FILES[$this->name] as $key => $value) {
+				$this->arrFiles[$key][] = $value;
 			}
 		}
 
