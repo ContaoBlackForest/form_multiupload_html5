@@ -90,7 +90,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 	public function validate()
 	{
 		// No file specified
-		if (!isset($_FILES[$this->strName]) || empty($_FILES[$this->strName]['name'])) {
+		if (!isset($_FILES[$this->name]) || empty($_FILES[$this->name]['name'])) {
 			if ($this->mandatory) {
 				if ($this->strLabel == '') {
 					$this->addError($GLOBALS['TL_LANG']['ERR']['mdtryNoLabel']);
@@ -103,7 +103,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 			return;
 		}
 
-		foreach ($_FILES[$this->strName] as $key1 => $value1) {
+		foreach ($_FILES[$this->name] as $key1 => $value1) {
 
 			if ($key1 == 'size') {
 				$this->uploadSize = array_sum($value1);
@@ -121,13 +121,13 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 
 			if (!$this->hasErrors()) {
 				$_SESSION['FILES'] = $this->arrFiles;
-				$this->log('Files from inputFiels "' . $this->strName['name'] . '" uploaded successfully', __METHOD__, TL_FILES);
+				$this->log('Files from inputFiels "' . $this->name . '" uploaded successfully', __METHOD__, TL_FILES);
 
 				$this->storeFileOnServer();
 			}
 		}
 
-		unset($_FILES[$this->strName]);
+		unset($_FILES[$this->name]);
 
 	}
 
@@ -138,18 +138,18 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 		// to many Files
 		if (count($this->arrFiles) > $this->maxFileCount) {
 			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['fileCount'], $this->maxFileCount));
-			$this->log('Files in FormField "' . $this->strName . '" exceeds the maximum count of ' . $this->maxFileCount, __METHOD__, TL_ERROR);
+			$this->log('Files in FormField "' . $this->name . '" exceeds the maximum count of ' . $this->maxFileCount, __METHOD__, TL_ERROR);
 
-			unset($_FILES[$this->strName]);
+			unset($_FILES[$this->name]);
 			return false;
 		}
 
 		// Files is too big
 		if ($this->maxlength > 0 && $this->uploadSize > $this->maxlength) {
 			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['filesize'], $maxlength_kb));
-			$this->log('Files in FormField "' . $this->strName . '" exceeds the maximum file size of ' . $maxlength_kb, __METHOD__, TL_ERROR);
+            $this->log('Files in FormField "'.$this->name.'" exceeds the maximum file size of '.$maxlength_kb, __METHOD__, TL_ERROR);
 
-			unset($_FILES[$this->strName]);
+			unset($_FILES[$this->name]);
 			return false;
 		}
 
@@ -169,7 +169,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 					$this->log('File "' . $arrFile['name'] . '" could not be uploaded (error ' . $arrFile['error'] . ')', __METHOD__, TL_ERROR);
 				}
 
-				unset($_FILES[$this->strName]);
+				unset($_FILES[$this->name]);
 				return false;
 			}
 		}
@@ -231,7 +231,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 					$this->Files->move_uploaded_file($arrFile['tmp_name'], $strUploadFolder . '/' . $arrFile['name']);
 					$this->Files->chmod($strUploadFolder . '/' . $arrFile['name'], $GLOBALS['TL_CONFIG']['defaultFileChmod']);
 
-					$_SESSION['FILES'][$this->strName] = array
+					$_SESSION['FILES'][$this->name] = array
 					(
 						'name'     => $arrFile['name'],
 						'type'     => $arrFile['type'],
@@ -286,7 +286,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['filetype'], $strExtension));
 			$this->log('File type "' . $strExtension . '" is not allowed to be uploaded (' . $arrFile['name'] . ')', __METHOD__, TL_ERROR);
 
-			unset($_FILES[$this->strName]);
+			unset($_FILES[$this->name]);
 			return false;
 		}
 
@@ -296,7 +296,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 				$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['filewidth'], $arrFile['name'], $GLOBALS['TL_CONFIG']['imageWidth']));
 				$this->log('File "' . $arrFile['name'] . '" exceeds the maximum image width of ' . $GLOBALS['TL_CONFIG']['imageWidth'] . ' pixels', __METHOD__, TL_ERROR);
 
-				unset($_FILES[$this->strName]);
+				unset($_FILES[$this->name]);
 				return false;
 			}
 
@@ -305,7 +305,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 				$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['fileheight'], $arrFile['name'], $GLOBALS['TL_CONFIG']['imageHeight']));
 				$this->log('File "' . $arrFile['name'] . '" exceeds the maximum image height of ' . $GLOBALS['TL_CONFIG']['imageHeight'] . ' pixels', __METHOD__, TL_ERROR);
 
-				unset($_FILES[$this->strName]);
+				unset($_FILES[$this->name]);
 				return false;
 			}
 		}
@@ -323,7 +323,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 	{
 		return sprintf(
 			'<input type="file" name="%s" id="ctrl_%s" class="upload%s"%s %s %s',
-			$this->strName . (isset($this->multipleUpload) ? '[]' : ''),
+			$this->name . (isset($this->multipleUpload) ? '[]' : ''),
 			$this->strId,
 			(strlen($this->strClass) ? ' ' . $this->strClass : ''),
 			$this->getAttributes(),
