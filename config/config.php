@@ -11,4 +11,4 @@
  * @copyright tomasiMEDIA
  */
 
-$GLOBALS['TL_FFL']['upload'] = 'FormFileUploadMultiple';
+$GLOBALS['TL_FFL']['upload'] = 'tomasiMedia\FormFileUploadMultiple';

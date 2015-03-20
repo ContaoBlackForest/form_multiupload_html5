@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <xliff version="1.1">
-    <file datatype="php" original="system/modules/multiupload_html5/languages/de/default.xlf"
-          source-language="en">
-        <body>
-            <trans-unit id="ERR.fileCount">
-                <source>The maximum count for file uploads is %s !</source>
-                <target>Die maximale Anzahl für Datei-Uploads beträgt %s !</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file datatype="php" original="system/modules/multiupload_html5/languages/de/default.xlf"
+		  source-language="en">
+		<body>
+			<trans-unit id="ERR.fileCount">
+				<source>The maximum count for file uploads is %s !</source>
+				<target>Die maximale Anzahl für Datei-Uploads beträgt %s !</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
