@@ -1,17 +1,20 @@
 <?php
 
 /**
- * Contao Open Source CMS
+ * Contao Form multi upload
+ * Copyright (C) 2015 Sven Baumann
  *
- * Copyright (c) 2005-2013 Leo Feyer
+ * PHP version 5
  *
- * @package   MultipleUploadHtml5
- * @author    Dominik Tomasi
- * @license   GNU
- * @copyright tomasiMEDIA 2014
+ * @package   contaoblackforest/form_multiupload_html5
+ * @file      FileUploadMultiple.php
+ * @author    Sven Baumann <baumann.sv@gmail.com>
+ * @author    Dominik Tomasi <dominik.tomasi@gmail.com>
+ * @license   LGPL-3.0+
+ * @copyright ContaoBlackforest 2015
  */
 
-namespace tomasiMedia;
+namespace ContaoBlackforest\Frontend\FormFields;
 
 /**
  * Class FormFileUploadMultiple
@@ -20,7 +23,7 @@ namespace tomasiMedia;
  *
  * @package tomasiMedia
  */
-class FormFileUploadMultiple extends \Widget implements \uploadable
+class FileUploadMultiple extends \Widget implements \uploadable
 {
 
 	/**
@@ -114,7 +117,8 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 					$this->arrFiles[$key2][$key1] = $value2;
 				}
 			}
-		} else {
+		}
+		else {
 			foreach ($_FILES[$this->name] as $key => $value) {
 				$this->arrFiles[$key][] = $value;
 			}
@@ -153,7 +157,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 		// Files is too big
 		if ($this->maxlength > 0 && $this->uploadSize > $this->maxlength) {
 			$this->addError(sprintf($GLOBALS['TL_LANG']['ERR']['filesize'], $maxlength_kb));
-            $this->log('Files in FormField "'.$this->name.'" exceeds the maximum file size of '.$maxlength_kb, __METHOD__, TL_ERROR);
+			$this->log('Files in FormField "' . $this->name . '" exceeds the maximum file size of ' . $maxlength_kb, __METHOD__, TL_ERROR);
 
 			unset($_FILES[$this->name]);
 			return false;

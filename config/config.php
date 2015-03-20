@@ -1,14 +1,16 @@
 <?php
-
 /**
- * Contao Open Source CMS
+ * Contao Form multi upload
+ * Copyright (C) 2015 Sven Baumann
  *
- * Copyright (c) 2005-2013 Leo Feyer
+ * PHP version 5
  *
- * @package   MultipleUploadHtml5
- * @author    Dominik Tomasi
- * @license   GNU
- * @copyright tomasiMEDIA
+ * @package   contaoblackforest/form_multiupload_html5
+ * @file      config.php
+ * @author    Sven Baumann <baumann.sv@gmail.com>
+ * @author    Dominik Tomasi <dominik.tomasi@gmail.com>
+ * @license   LGPL-3.0+
+ * @copyright ContaoBlackforest 2015
  */
 
-$GLOBALS['TL_FFL']['upload'] = 'tomasiMedia\FormFileUploadMultiple';
+$GLOBALS['TL_FFL']['upload'] = 'ContaoBlackforest\Frontend\FormFields\FileUploadMultiple';
