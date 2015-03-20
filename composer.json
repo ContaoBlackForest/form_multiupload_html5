@@ -1,0 +1,59 @@
+{
+  "name": "contaoblackforest/form_multiupload_html5",
+  "description": "Contao Form Multi Upload for Contao OpenSource CMS",
+  "keywords": [
+    "contao",
+    "frontend",
+    "form",
+    "multi",
+    "upload",
+    "module"
+  ],
+  "type": "contao-module",
+  "homepage": "",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Sven Baumann",
+      "email": "baumann.sv@gmail.com",
+      "homepage": "",
+      "role": "Developer"
+    },
+    {
+      "name": "Dominik Tomasi",
+      "email": "dominik.tomasi@gmail.com",
+      "homepage": "",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "baumann.sv@gmail.com",
+    "issues": "https://github.com/ContaoBlackforest/form_multiupload_html5/issues",
+    "wiki": "https://github.com/ContaoBlackforest/form_multiupload_html5/wiki",
+    "irc": "irc://irc.freenode.org/contao.dev",
+    "source": "https://github.com/ContaoBlackforest/form_multiupload_html5"
+  },
+  "require": {
+    "php": ">=5.3",
+    "contao/core": ">=3.1,<4",
+    "contao-community-alliance/composer-plugin": "~2.0"
+  },
+  "require-dev": {},
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "ContaoBlackforest\\": "src/"
+    }
+  },
+  "extra": {
+    "contao": {
+      "sources": {
+        "contao": "system/modules/form_multiupload_html5"
+      }
+    },
+    "branch-alias": {
+      "dev-develop": "1.0.x-dev"
+    }
+  }
+}
