@@ -193,7 +193,7 @@ class FormFileUploadMultiple extends \Widget implements \uploadable
 				}
 			}
 
-			$objUploadFolder = \FilesModel::findByUuid($intUploadFolder);
+			$objUploadFolder = \FilesModel::findByPk($intUploadFolder);
 
 			// The upload folder could not be found
 			if ($objUploadFolder === null) {
